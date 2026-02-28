@@ -1,0 +1,159 @@
+/**
+ * Function (功能): 
+ *   - 编辑器区域布局：元信息输入（Meta）、Markdown 工具栏、编辑/预览分栏
+ *   - 编辑器与预览之间的可拖动分割线（.editor-preview-divider）
+ *   - Markdown 预览渲染样式（标题、代码块、表格、引用等）
+ * Bug Fix Guide (Bug 修复提示):
+ *   若编辑器布局错乱、预览样式异常（表格无边框、代码块无背景）、分割线无法拖动，
+ *   需上传：此文件 + variables.css + editor.js 给 LLM。
+ *   若 Markdown 渲染异常，需额外检查 editor.js 中的 mdToHtml 函数。
+ */
+
+/* ── Node Meta ── */
+.node-meta {
+    display: flex;
+    gap: 8px;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+  .node-meta input {
+    flex: 1;
+    padding: 5px 10px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text);
+    font-size: 13px;
+  }
+  .node-meta input:focus { outline: none; border-color: var(--accent); }
+  #meta-label { max-width: 220px; }
+  
+  /* ── Markdown Toolbar ── */
+  .md-toolbar {
+    display: flex;
+    gap: 4px;
+    padding: 6px 12px;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+    flex-wrap: wrap;
+  }
+  .md-toolbar button { padding: 3px 8px; font-size: 12px; }
+  
+  /* ── Editor Wrap ── */
+  .editor-wrap {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+    min-height: 0;
+    align-items: stretch;
+  }
+  
+  /* ── Editor ↔ Preview Divider ── */
+  .editor-preview-divider {
+    width: 5px;
+    background: rgba(79,142,247,0.35);
+    flex-shrink: 0;
+    cursor: col-resize;
+    transition: background 0.15s;
+    position: relative;
+  }
+  .editor-preview-divider:hover,
+  .editor-preview-divider.dragging { background: var(--accent); }
+  .editor-preview-divider::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 2px;
+    width: 1px;
+    background: rgba(255,255,255,0.25);
+    pointer-events: none;
+  }
+  
+  /* ── Textarea Editor ── */
+  #editor {
+    flex: 1;
+    padding: 16px;
+    font-family: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text);
+    background: transparent;
+    border: none;
+    resize: none;
+    outline: none;
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-width: 0;
+    min-height: 0;
+  }
+  #editor::-webkit-scrollbar { display: none; }
+  #editor { scrollbar-width: none; -ms-overflow-style: none; }
+  
+  /* ── Preview Panel ── */
+  .preview {
+    flex: 1;
+    padding: 16px;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--text);
+    background: rgba(0,0,0,0.15);
+    overflow-y: scroll;
+    min-width: 0;
+    word-break: break-word;
+  }
+  
+  /* ── Preview Markdown Styles ── */
+  .preview h1, .preview h2, .preview h3 { 
+    color: var(--accent); 
+    margin: 12px 0 6px; 
+  }
+  .preview h4, .preview h5, .preview h6 { 
+    color: var(--accent); 
+    margin: 10px 0 4px; 
+  }
+  .preview p { margin: 0 0 8px; }
+  .preview ul, .preview ol { margin: 4px 0 8px 20px; }
+  .preview li { margin: 2px 0; }
+  .preview code { 
+    background: rgba(255,255,255,0.1); 
+    padding: 2px 5px; 
+    border-radius: 3px; 
+    font-size: 13px; 
+    font-family: 'Cascadia Code','Fira Code',monospace; 
+  }
+  .preview pre { 
+    background: rgba(0,0,0,0.3); 
+    padding: 12px; 
+    border-radius: var(--radius); 
+    overflow-x: auto; 
+    margin: 8px 0; 
+  }
+  .preview pre code { background: none; padding: 0; }
+  .preview table { 
+    border-collapse: collapse; 
+    width: 100%; 
+    margin: 10px 0; 
+  }
+  .preview th, .preview td { 
+    border: 1px solid var(--border); 
+    padding: 6px 10px; 
+  }
+  .preview th { background: rgba(79,142,247,0.15); }
+  .preview blockquote { 
+    border-left: 3px solid var(--accent); 
+    padding-left: 12px; 
+    color: var(--text-dim); 
+    margin: 8px 0; 
+  }
+  .preview a { color: var(--accent); }
+  .preview hr { 
+    border: none; 
+    border-top: 1px solid var(--border); 
+    margin: 12px 0; 
+  }
+  .preview mark.search-hl { 
+    background: rgba(255,220,0,0.4); 
+    border-radius: 2px; 
+  }

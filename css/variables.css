@@ -1,0 +1,28 @@
+/**
+ * Function (功能): 
+ *   - 定义全局设计令牌（Design Tokens），包括颜色、尺寸、透明度等 CSS 变量
+ *   - 作为整个应用的主题配置中心，控制视觉一致性
+ * Bug Fix Guide (Bug 修复提示):
+ *   若出现全局样式异常（颜色错乱、间距失效、主题不统一），仅需上传此文件给 LLM。
+ *   若特定组件样式异常，需上传：此文件 + 该组件对应的 CSS（如 tree.css）
+ */
+
+/* ── Design Tokens ── */
+:root {
+    --bg-opacity: 0.85;
+    --accent: #4f8ef7;
+    --accent-hover: #2d6fd4;
+    --danger: #e05555;
+    --bg-panel: rgba(24,26,32,0.55);
+    --bg-toolbar: rgba(18,20,26,0.65);
+    --bg-editor: rgba(20,22,28,0.50);
+    --text: #e0e2ea;
+    --text-dim: #8a8fa8;
+    --border: rgba(255,255,255,0.12);
+    --tree-hover: rgba(79,142,247,0.25);
+    --tree-active: rgba(79,142,247,0.40);
+    --radius: 6px;
+    --divider-w: 5px;
+    --toolbar-h: 44px;
+    --status-h: 28px;
+  }

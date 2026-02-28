@@ -1,0 +1,26 @@
+/**
+ * Function (功能): 
+ *   - 原子工具类（.hidden 等）与全局动画定义（shimmer、fadeout）
+ *   - 全局滚动条样式定制
+ * Bug Fix Guide (Bug 修复提示):
+ *   若工具类失效、动画不播放、滚动条样式异常，
+ *   仅需上传此文件给 LLM（无依赖，独立模块）。
+ */
+
+/* ── Utility Classes ── */
+.hidden { display: none !important; }
+
+/* ── Scrollbars ── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.22); }
+
+/* ── Animations ── */
+@keyframes shimmer { 
+  to { background-position: -200% 0; } 
+}
+@keyframes fadeout { 
+  0%,70%{opacity:1} 
+  100%{opacity:0} 
+}

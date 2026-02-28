@@ -1,0 +1,134 @@
+/**
+ * Function (功能): 
+ *   - 应用宏观骨架布局：Skeleton 加载屏、Toolbar、Body 分栏、Status Bar
+ *   - Flex 布局结构与面板分割逻辑（树面板 ↔ 编辑器面板）
+ * Bug Fix Guide (Bug 修复提示):
+ *   若布局错乱（工具栏错位、面板不拉伸、分割线异常）、Skeleton 动画失效，
+ *   需上传：此文件 + variables.css + base.css 给 LLM。
+ */
+
+/* ── Skeleton Screen ── */
+.skeleton-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    background: #141418;
+  }
+  .sk-sidebar {
+    width: 260px;
+    background: linear-gradient(110deg, #1e2028 30%, #2a2d38 50%, #1e2028 70%);
+    background-size: 200% 100%;
+    animation: shimmer 1.2s infinite;
+  }
+  .sk-editor {
+    flex: 1;
+    background: linear-gradient(110deg, #181a22 30%, #22242e 50%, #181a22 70%);
+    background-size: 200% 100%;
+    animation: shimmer 1.2s 0.2s infinite;
+  }
+  
+  /* ── App Shell ── */
+  .app {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+  }
+  
+  /* ── Toolbar ── */
+  .toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--toolbar-h);
+    padding: 0 12px;
+    background: var(--bg-toolbar);
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+    gap: 8px;
+  }
+  .toolbar-left, .toolbar-right { 
+    display: flex; 
+    align-items: center; 
+    gap: 6px; 
+  }
+  .app-title { 
+    font-weight: 700; 
+    color: var(--accent); 
+    margin-right: 8px; 
+  }
+  .opacity-label { 
+    display: flex; 
+    align-items: center; 
+    gap: 6px; 
+    font-size: 12px; 
+    color: var(--text-dim); 
+  }
+  #bg-opacity { 
+    width: 80px; 
+    accent-color: var(--accent); 
+  }
+  
+  /* ── Body Layout ── */
+  .body-wrap {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    min-height: 0;
+  }
+  
+  /* ── Panel Containers ── */
+  .tree-panel {
+    width: 260px;
+    min-width: 20%;
+    max-width: 80%;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-panel);
+    border-right: 1px solid var(--border);
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex-shrink: 0;
+  }
+  .editor-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-editor);
+    overflow: hidden;
+    min-width: 0;
+  }
+  
+  /* ── Main Divider (tree ↔ editor) ── */
+  .divider {
+    width: var(--divider-w);
+    background: var(--border);
+    cursor: col-resize;
+    flex-shrink: 0;
+    transition: background 0.15s;
+  }
+  .divider:hover, .divider.dragging { background: var(--accent); }
+  
+  /* ── Status Bar ── */
+  .status-bar {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    height: var(--status-h);
+    padding: 0 14px;
+    background: var(--bg-toolbar);
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--text-dim);
+    flex-shrink: 0;
+  }
+  .storage-info.warn { color: #f0b429; }
+  .storage-info.critical { color: var(--danger); }
+  .status-msg { 
+    margin-left: auto; 
+    color: #6ee7b7; 
+    animation: fadeout 3s ease forwards; 
+  }
