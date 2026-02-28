@@ -7,10 +7,6 @@
  * Dependencies (依赖): 
  *   - storage.js (StorageMgr)
  *   - editor.js (间接调用 updateCharStats)
- * Bug Fix Guide (Bug 修复提示):
- *   若节点无法添加/删除、拖拽无效、Undo 失效、树不渲染、隐藏功能异常，
- *   需上传：此文件 + storage.js + tree.css 给 LLM。
- *   若涉及编辑状态同步异常，需额外上传 editor.js。
  */
 
 'use strict';

@@ -9,10 +9,6 @@
  *   - storage.js (StorageMgr)
  *   - tree.js (TreeMgr, 获取节点结构、深度、隐藏状态)
  *   - export.js (调用 insertTable)
- * Bug Fix Guide (Bug 修复提示):
- *   若编辑器无响应、预览不更新、统计数值错误、工具栏失效、拖入文件无反应，
- *   需上传：此文件 + tree.js + storage.js + editor.css 给 LLM。
- *   若 Markdown 渲染异常，重点检查 mdToHtml() 函数。
  */
 
 'use strict';

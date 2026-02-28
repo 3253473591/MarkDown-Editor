@@ -3,9 +3,6 @@
  *   - 实现类似 Word 的 DPI 缩放功能（50%-200%），支持 Ctrl++/-/-/0 快捷键
  *   - 动态创建缩放控件并注入样式，持久化缩放比例到 localStorage
  * Dependencies (依赖): 无（独立模块，纯 DOM 操作）
- * Bug Fix Guide (Bug 修复提示):
- *   若缩放按钮不显示、快捷键失效、缩放后布局错乱，
- *   仅需上传此文件给 LLM（自包含样式，无外部 CSS/JS 依赖）。
  */
 
 'use strict';

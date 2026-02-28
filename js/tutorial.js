@@ -4,9 +4,6 @@
  *   - 动态创建 Overlay 与行内样式，持久化完成状态到 localStorage
  *   - 支持重置与重新播放
  * Dependencies (依赖): 无（纯 JS 动态创建 DOM 与样式，不依赖外部 CSS 类）
- * Bug Fix Guide (Bug 修复提示):
- *   若引导框不显示、定位偏移、步骤错乱、无法跳过/完成，
- *   仅需上传此文件给 LLM（自包含实现，无外部依赖）。
  */
 
 'use strict';

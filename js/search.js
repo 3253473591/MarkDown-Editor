@@ -5,9 +5,6 @@
  * Dependencies (依赖): 
  *   - tree.js (TreeMgr, 获取节点列表与激活节点)
  *   - storage.js (StorageMgr, 加载节点内容)
- * Bug Fix Guide (Bug 修复提示):
- *   若搜索无结果、高亮失效、点击无法跳转、搜索框不弹出，
- *   需上传：此文件 + tree.js + storage.js + components.css 给 LLM。
  */
 
 'use strict';

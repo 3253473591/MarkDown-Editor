@@ -2,9 +2,6 @@
  * Function (功能): 
  *   - 原子工具类（.hidden 等）与全局动画定义（shimmer、fadeout）
  *   - 全局滚动条样式定制
- * Bug Fix Guide (Bug 修复提示):
- *   若工具类失效、动画不播放、滚动条样式异常，
- *   仅需上传此文件给 LLM（无依赖，独立模块）。
  */
 
 /* ── Utility Classes ── */

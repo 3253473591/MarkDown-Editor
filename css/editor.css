@@ -3,10 +3,6 @@
  *   - 编辑器区域布局：元信息输入（Meta）、Markdown 工具栏、编辑/预览分栏
  *   - 编辑器与预览之间的可拖动分割线（.editor-preview-divider）
  *   - Markdown 预览渲染样式（标题、代码块、表格、引用等）
- * Bug Fix Guide (Bug 修复提示):
- *   若编辑器布局错乱、预览样式异常（表格无边框、代码块无背景）、分割线无法拖动，
- *   需上传：此文件 + variables.css + editor.js 给 LLM。
- *   若 Markdown 渲染异常，需额外检查 editor.js 中的 mdToHtml 函数。
  */
 
 /* ── Node Meta ── */

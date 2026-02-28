@@ -7,10 +7,6 @@
  *   - tree.js (TreeMgr, 获取树结构与隐藏集合)
  *   - storage.js (StorageMgr, 加载节点内容)
  *   - editor.js (EditorMgr, 显示消息、插入表格回调)
- * Bug Fix Guide (Bug 修复提示):
- *   若导出内容为空、格式错乱、导入失败、对话框不弹出、Word 复制失败，
- *   需上传：此文件 + tree.js + storage.js + editor.js 给 LLM。
- *   若对话框样式异常，需额外上传 components.css。
  */
 
 'use strict';

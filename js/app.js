@@ -7,10 +7,6 @@
  * Dependencies (依赖): 
  *   - 所有其他 JS 模块（storage, tree, editor, search, export, shortcuts, zoom, tutorial）
  *   - 所有 CSS 文件
- * Bug Fix Guide (Bug 修复提示):
- *   若应用无法启动、白屏、背景图不显示、分割线无法拖动、清理对话框异常，
- *   需上传：此文件 + 出错的特定功能模块（如 tree.js 或 editor.js）。
- *   若为启动顺序问题，需同时上传所有 JS 文件。
  */
 
 'use strict';

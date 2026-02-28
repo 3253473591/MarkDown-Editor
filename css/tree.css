@@ -3,9 +3,6 @@
  *   - 左侧树形面板的专用样式：节点行、展开/折叠图标、标签、注释
  *   - 节点可见性切换（隐藏/显示）的视觉状态（.node-hidden、.tree-vis-btn）
  *   - 拖拽操作的视觉反馈（.drag-over）
- * Bug Fix Guide (Bug 修复提示):
- *   若树节点样式错乱、隐藏按钮不显示、缩进异常、拖拽无视觉反馈，
- *   需上传：此文件 + variables.css + tree.js 给 LLM。
  */
 
 /* ── Tree Container ── */

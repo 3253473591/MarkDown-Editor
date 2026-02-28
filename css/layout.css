@@ -2,9 +2,6 @@
  * Function (功能): 
  *   - 应用宏观骨架布局：Skeleton 加载屏、Toolbar、Body 分栏、Status Bar
  *   - Flex 布局结构与面板分割逻辑（树面板 ↔ 编辑器面板）
- * Bug Fix Guide (Bug 修复提示):
- *   若布局错乱（工具栏错位、面板不拉伸、分割线异常）、Skeleton 动画失效，
- *   需上传：此文件 + variables.css + base.css 给 LLM。
  */
 
 /* ── Skeleton Screen ── */

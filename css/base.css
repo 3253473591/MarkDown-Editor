@@ -2,9 +2,6 @@
  * Function (功能): 
  *   - CSS Reset 与基础样式设定（box-sizing、字体、背景色）
  *   - 全屏背景图层的伪元素实现（body::before）
- * Bug Fix Guide (Bug 修复提示):
- *   若出现页面布局偏移、滚动条异常、背景图不显示或透明度问题，
- *   仅需上传此文件 + variables.css 给 LLM。
  */
 
 /* ── Reset ── */

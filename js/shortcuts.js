@@ -6,9 +6,6 @@
  *   - tree.js (TreeMgr, 节点操作与导航)
  *   - editor.js (EditorMgr, 保存、添加兄弟节点、内容 Undo/Redo)
  *   - search.js (SearchMgr, 打开搜索)
- * Bug Fix Guide (Bug 修复提示):
- *   若快捷键失效、冲突（如 Ctrl+S 未阻止默认保存）、Undo 顺序错误，
- *   需上传：此文件 + shortcuts.js 调用的对应功能模块（如 tree.js/editor.js）。
  */
 
 'use strict';

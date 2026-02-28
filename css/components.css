@@ -2,10 +2,6 @@
  * Function (功能): 
  *   - 通用 UI 组件：按钮系统（Button）、下拉菜单（Dropdown）、模态框（Modal）
  *   - 表单输入框、表格、快捷键列表、搜索结果列表的样式
- * Bug Fix Guide (Bug 修复提示):
- *   若按钮/输入框/模态框样式异常、下拉菜单不显示、搜索列表无高亮，
- *   需上传：此文件 + variables.css 给 LLM。
- *   若搜索功能交互异常，需额外上传 search.js。
  */
 
 /* ── Buttons ── */
