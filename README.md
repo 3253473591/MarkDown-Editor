@@ -8,8 +8,6 @@ git clone https://github.com/3253473591/MarkDown-Editor.git
 
 无需安装任何依赖，直接在浏览器中打开 `index.html` 即可使用。
 
-> **注意**：部分浏览器对本地 `file://` 协议访问 IndexedDB 有限制，建议通过本地 HTTP 服务器访问。
-
 ## 功能特性
 
 ### 节点树管理
