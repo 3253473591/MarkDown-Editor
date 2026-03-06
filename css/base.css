@@ -1,0 +1,68 @@
+/**
+ * Function: 全局基础样式
+ *   - 重置 / 字体 / 基础背景层
+ *   - 主题背景层（::before）与自定义背景层（::after）
+ */
+
+ :root{
+  --radius: 10px;
+  --transition-fast:  120ms ease;
+  --transition-medium: 220ms ease;
+  --transition-slow:  420ms ease;
+  --z-bg: 0;
+  --z-app: 1;
+}
+
+/* ── Reset ── */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: var(--font-sans, 'Segoe UI', system-ui, sans-serif);
+  font-size: 14px;
+  color: var(--text);
+  background: var(--bg-base, #141418);
+  overflow: hidden;
+}
+
+/* ── 主题自带背景层（Z轴层0，最底层） ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-bg);
+  background: 
+    var(--bg-pattern, none),
+    var(--bg-gradient, #141418);
+  background-size: 
+    var(--bg-pattern-size, auto),
+    cover;
+  opacity: var(--bg-opacity, 0.85);
+  pointer-events: none;
+  transition: opacity var(--transition-medium);
+}
+
+/* ── 自定义背景图层（Z轴层0，叠在主题背景之上）── */
+/* 由 BackgroundMgr 通过 --custom-bg-* 控制 */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-bg);
+  background-image: var(--custom-bg-image, none);
+  background-size: var(--custom-bg-size, cover);
+  background-position: center;
+  background-repeat: var(--custom-bg-repeat, no-repeat);
+  background-color: var(--custom-bg-color, transparent);
+  opacity: var(--custom-bg-opacity, 0);
+  pointer-events: none;
+  transition: opacity var(--transition-slow);
+}
+
+/* ── 选择基础字体 ── */
+body {
+  font-family: var(--font-sans);
+  font-feature-settings: 'kern' 1, 'liga' 1;
+}
+
+.hidden { display: none !important; }

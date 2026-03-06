@@ -1,0 +1,69 @@
+/**
+ * Function: 纸艺档案主题变量
+ *   - 暖调纸本色 + 牛皮纸纹理
+ *   - 材质对比与仪式感排版
+ */
+
+ :root {
+    /* ── 纸质色板 ── */
+    --bg-base: #f5f2e9;
+    --bg-panel: rgba(232,228,217,0.95);
+    --bg-toolbar: rgba(242,239,230,0.98);
+    --bg-editor: rgba(250,247,238,0.98);
+    --text: #2d2a24;
+    --text-dim: #6b6560;
+    --border: rgba(45,42,36,0.15);
+    
+    /* ── 强调色系 ── */
+    --accent: #c17f59;        /* 皮革棕 */
+    --accent-hover: #a86b4b;
+    --accent-soft: #d4b896;   /* 米卡色 */
+    --accent-gradient: linear-gradient(135deg, #c17f59 0%, #d4b896 100%);
+    
+    /* ── 功能色 ── */
+    --danger: #c44536;
+    --success: #5a7a6d;
+    --warning: #c4a35a;
+    
+    /* ── 材质纹理 ── */
+    --paper-texture: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='5'/%3E%3CfeDiffuseLighting in='noise' lighting-color='%23f5f2e9' surfaceScale='2'%3E%3CfeDistantLight azimuth='45' elevation='60'/%3E%3C/feDiffuseLighting%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paper)'/%3E%3C/svg%3E");
+    --bg-pattern: var(--paper-texture);
+    --bg-gradient: linear-gradient(180deg, #f5f2e9 0%, #ebe7db 100%);
+    
+    /* ── 阴影系统 ── */
+    --shadow-panel: 
+      0 2px 8px rgba(45,42,36,0.08),
+      0 8px 32px rgba(45,42,36,0.12);
+    --shadow-float: 
+      0 4px 16px rgba(45,42,36,0.1),
+      0 1px 3px rgba(45,42,36,0.15);
+    
+    /* ── 字体系统 ── */
+    --font-mono: 'IBM Plex Mono', 'JetBrains Mono', monospace;
+    --font-sans: 'Inter Variable', 'Segoe UI', sans-serif;
+    --font-serif: 'Source Serif 4', 'Merriweather', Georgia, serif;
+    --font-editor: var(--font-mono);
+    --font-preview: var(--font-serif);
+  }
+  
+  /* ── 纸质特有效果 ── */
+  .paper-texture {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .paper-texture::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--paper-texture);
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  
+  .paper-shadow {
+    box-shadow: 
+      inset 0 1px 0 rgba(255,255,255,0.5),
+      inset 0 -1px 0 rgba(0,0,0,0.03);
+  }
+  

@@ -1,0 +1,201 @@
+/**
+ * Function: 树形面板样式系统
+ *   - 节点交互动画
+ *   - 可见性控制
+ *   - 拖拽效果
+ */
+
+/* ── 树容器 ── */
+#tree-container { 
+  padding: 8px 4px; 
+  position: relative;
+}
+
+/* ── 树节点 ── */
+.tree-node { 
+  user-select: none;
+  position: relative;
+}
+
+.tree-node-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 6px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+  transition: 
+    background var(--transition-fast),
+    padding-left var(--transition-fast);
+}
+
+/* ── 指示条（从左滑入） ── */
+.tree-node-row::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  background: var(--accent-gradient);
+  border-radius: var(--radius) 0 0 var(--radius);
+  transition: width var(--transition-medium) var(--ease-out-expo);
+}
+
+.tree-node-row:hover::before {
+  width: var(--node-indicator-width, 3px);
+}
+
+.tree-node-row.active::before {
+  width: var(--node-indicator-width, 3px);
+}
+
+.tree-node-row:hover { 
+  background: var(--tree-hover);
+}
+
+.tree-node-row.active { 
+  background: var(--tree-active);
+}
+
+.tree-node-row.drag-over { 
+  outline: 2px dashed var(--accent);
+  background: var(--tree-active);
+}
+
+/* ── 扫描线动画（赛博主题） ── */
+.tree-node-row.active::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--accent-gradient);
+  opacity: 0.5;
+  animation: scanline 3s linear infinite;
+}
+
+.tree-toggle {
+  width: 16px;
+  text-align: center;
+  font-size: 11px;
+  color: var(--text-dim);
+  flex-shrink: 0;
+}
+
+.tree-label {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-variation-settings: 'wght' 400;
+  transition: font-variation-settings var(--transition-medium);
+}
+
+.tree-node-row:hover .tree-label {
+  font-variation-settings: 'wght' 500;
+}
+
+.tree-comment {
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-left: 4px;
+  font-style: italic;
+  opacity: 0.7;
+}
+
+.tree-children { 
+  padding-left: 18px; 
+}
+
+.tree-children.collapsed { 
+  display: none; 
+}
+
+/* ── 移动按钮（上下移动） ── */
+.tree-move-btn {
+  opacity: 0;
+  font-size: 11px;
+  padding: 0 2px;
+  cursor: pointer;
+  flex-shrink: 0;
+  line-height: 1;
+  color: var(--text-dim);
+  transition: opacity var(--transition-fast), color var(--transition-fast);
+  user-select: none;
+}
+
+.tree-node-row:hover .tree-move-btn { 
+  opacity: 0.5; 
+}
+
+.tree-move-btn:hover { 
+  opacity: 1 !important; 
+  color: var(--accent); 
+}
+
+/* ── 可见性切换按钮 ── */
+.tree-vis-btn {
+  opacity: 0;
+  font-size: 12px;
+  margin-left: auto;
+  padding: 0 2px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+  user-select: none;
+}
+
+.tree-node-row:hover .tree-vis-btn { 
+  opacity: 0.7; 
+}
+
+.tree-vis-btn:hover { 
+  opacity: 1 !important;
+  transform: scale(1.2);
+}
+
+/* 隐藏节点状态 */
+.tree-node-row.node-hidden { 
+  opacity: 0.45; 
+}
+
+.tree-node-row.node-hidden .tree-label {
+  text-decoration: line-through;
+  color: var(--text-dim);
+}
+
+.tree-node-row.node-hidden .tree-vis-btn { 
+  opacity: 0.8; 
+}
+
+/* ── 拖拽效果 ── */
+.tree-node-row.dragging {
+  opacity: 0.6;
+  transform: scale(1.02) rotate(3deg);
+  box-shadow: var(--shadow-float);
+  z-index: 100;
+}
+
+/* ── 拖拽放置动画（水波纹） ── */
+@keyframes dropRipple {
+  0% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.tree-node-row.drop-success::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+  animation: dropRipple 0.4s ease-out;
+}
