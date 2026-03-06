@@ -1,0 +1,108 @@
+/**
+ * Function: 液态极光主题变量
+ *   - 流体渐变背景 + 毛玻璃效果
+ *   - 彩色层级指示
+ */
+
+ :root {
+    /* ── 深空色板 ── */
+    --bg-base: #0f0a1a;
+    --bg-panel: rgba(15,10,26,0.75);
+    --bg-toolbar: rgba(20,15,30,0.80);
+    --bg-editor: rgba(12,8,22,0.70);
+    --text: #f0f0f5;
+    --text-dim: #8a85a0;
+    --border: rgba(255,255,255,0.08);
+    
+    /* ── 极光色系 ── */
+    --aurora-blue: #4f8ef7;
+    --aurora-purple: #a855f7;
+    --aurora-cyan: #00d4ff;
+    --aurora-orange: #ff6b35;
+    --aurora-pink: #ec4899;
+    --aurora-teal: #14b8a6;
+    
+    /* ── 层级色系 ── */
+    --level-1: var(--aurora-orange);
+    --level-2: var(--aurora-cyan);
+    --level-3: var(--aurora-purple);
+    --level-4: var(--aurora-pink);
+    --level-5: var(--aurora-teal);
+    
+    --accent: var(--aurora-blue);
+    --accent-hover: #3b7ae0;
+    --accent-gradient: linear-gradient(135deg, #4f8ef7 0%, #a855f7 100%);
+    
+    /* ── 功能色 ── */
+    --danger: #ff4757;
+    --success: #10b981;
+    --warning: #f59e0b;
+    
+    /* ── 毛玻璃效果 ── */
+    --blur-amount: 40px;
+    --blur-saturation: 1.3;
+    --glass-effect: 
+      backdrop-filter: blur(var(--blur-amount)) saturate(var(--blur-saturation));
+    --glass-bg: rgba(15,10,26,0.6);
+    
+    /* ── 阴影系统 ── */
+    --shadow-panel: 
+      0 8px 32px rgba(0,0,0,0.3),
+      inset 0 1px 0 rgba(255,255,255,0.05);
+    --shadow-float: 
+      0 12px 48px rgba(0,0,0,0.4),
+      0 0 0 1px rgba(255,255,255,0.1);
+    
+    /* ── 流体渐变背景 ── */
+    --aurora-gradient-1: radial-gradient(ellipse at 20% 20%, rgba(79,142,247,0.15) 0%, transparent 50%);
+    --aurora-gradient-2: radial-gradient(ellipse at 80% 80%, rgba(168,85,247,0.15) 0%, transparent 50%);
+    --aurora-gradient-3: radial-gradient(ellipse at 40% 80%, rgba(0,212,255,0.1) 0%, transparent 50%);
+    
+    /* ── 字体系统 ── */
+    --font-mono: 'JetBrains Mono', 'Cascadia Code', monospace;
+    --font-sans: 'Inter Variable', 'Segoe UI', sans-serif;
+  }
+  
+  /* ── 极光特有效果 ── */
+  .aurora-bg {
+    position: fixed;
+    inset: 0;
+    z-index: var(--z-bg);
+    background: var(--bg-base);
+    overflow: hidden;
+  }
+  
+  .aurora-bg::before,
+  .aurora-bg::after {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    background: 
+      var(--aurora-gradient-1),
+      var(--aurora-gradient-2),
+      var(--aurora-gradient-3);
+    animation: aurora-drift 30s ease-in-out infinite alternate;
+  }
+  
+  .aurora-bg::after {
+    animation-duration: 45s;
+    animation-direction: alternate-reverse;
+  }
+  
+  @keyframes aurora-drift {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(30px, -30px) rotate(120deg); }
+    66% { transform: translate(-20px, 20px) rotate(240deg); }
+    100% { transform: translate(10px, -10px) rotate(360deg); }
+  }
+  
+  /* ── 毛玻璃组件 ── */
+  .glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--blur-amount)) saturate(var(--blur-saturation));
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  

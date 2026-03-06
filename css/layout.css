@@ -1,131 +1,219 @@
 /**
- * Function (功能): 
- *   - 应用宏观骨架布局：Skeleton 加载屏、Toolbar、Body 分栏、Status Bar
- *   - Flex 布局结构与面板分割逻辑（树面板 ↔ 编辑器面板）
+ * Function: 布局系统与Z轴层次
+ *   - 面板层次分离
+ *   - 工具栏悬浮效果
  */
 
-/* ── Skeleton Screen ── */
+/* ── 骨架屏 ── */
 .skeleton-screen {
-    position: fixed;
-    inset: 0;
-    z-index: 100;
-    display: flex;
-    background: #141418;
-  }
-  .sk-sidebar {
-    width: 260px;
-    background: linear-gradient(110deg, #1e2028 30%, #2a2d38 50%, #1e2028 70%);
-    background-size: 200% 100%;
-    animation: shimmer 1.2s infinite;
-  }
-  .sk-editor {
-    flex: 1;
-    background: linear-gradient(110deg, #181a22 30%, #22242e 50%, #181a22 70%);
-    background-size: 200% 100%;
-    animation: shimmer 1.2s 0.2s infinite;
-  }
-  
-  /* ── App Shell ── */
-  .app {
-    position: relative;
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    width: 100vw;
-  }
-  
-  /* ── Toolbar ── */
-  .toolbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: var(--toolbar-h);
-    padding: 0 12px;
-    background: var(--bg-toolbar);
-    border-bottom: 1px solid var(--border);
-    flex-shrink: 0;
-    gap: 8px;
-  }
-  .toolbar-left, .toolbar-right { 
-    display: flex; 
-    align-items: center; 
-    gap: 6px; 
-  }
-  .app-title { 
-    font-weight: 700; 
-    color: var(--accent); 
-    margin-right: 8px; 
-  }
-  .opacity-label { 
-    display: flex; 
-    align-items: center; 
-    gap: 6px; 
-    font-size: 12px; 
-    color: var(--text-dim); 
-  }
-  #bg-opacity { 
-    width: 80px; 
-    accent-color: var(--accent); 
-  }
-  
-  /* ── Body Layout ── */
-  .body-wrap {
-    display: flex;
-    flex: 1;
-    overflow: hidden;
-    min-height: 0;
-  }
-  
-  /* ── Panel Containers ── */
-  .tree-panel {
-    width: 260px;
-    min-width: 20%;
-    max-width: 80%;
-    display: flex;
-    flex-direction: column;
-    background: var(--bg-panel);
-    border-right: 1px solid var(--border);
-    overflow-y: auto;
-    overflow-x: hidden;
-    flex-shrink: 0;
-  }
-  .editor-panel {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    background: var(--bg-editor);
-    overflow: hidden;
-    min-width: 0;
-  }
-  
-  /* ── Main Divider (tree ↔ editor) ── */
-  .divider {
-    width: var(--divider-w);
-    background: var(--border);
-    cursor: col-resize;
-    flex-shrink: 0;
-    transition: background 0.15s;
-  }
-  .divider:hover, .divider.dragging { background: var(--accent); }
-  
-  /* ── Status Bar ── */
-  .status-bar {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    height: var(--status-h);
-    padding: 0 14px;
-    background: var(--bg-toolbar);
-    border-top: 1px solid var(--border);
-    font-size: 12px;
-    color: var(--text-dim);
-    flex-shrink: 0;
-  }
-  .storage-info.warn { color: #f0b429; }
-  .storage-info.critical { color: var(--danger); }
-  .status-msg { 
-    margin-left: auto; 
-    color: #6ee7b7; 
-    animation: fadeout 3s ease forwards; 
-  }
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  background: var(--bg-base);
+}
+
+.sk-sidebar {
+  width: 260px;
+  background: linear-gradient(
+    110deg,
+    var(--bg-panel) 30%,
+    rgba(255,255,255,0.05) 50%,
+    var(--bg-panel) 70%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.2s infinite;
+}
+
+.sk-editor {
+  flex: 1;
+  background: linear-gradient(
+    110deg,
+    var(--bg-editor) 30%,
+    rgba(255,255,255,0.03) 50%,
+    var(--bg-editor) 70%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.2s 0.2s infinite;
+}
+
+/* ── 应用壳 ── */
+.app {
+  position: relative;
+  z-index: var(--z-panel);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* ── 工具栏（Z轴层2，悬浮） ── */
+.toolbar {
+  position: relative;
+  z-index: var(--z-float);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--toolbar-h);
+  padding: 0 12px;
+  margin: 8px 12px 0 12px;
+  background: var(--bg-toolbar);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-float);
+  flex-shrink: 0;
+  gap: 8px;
+  backdrop-filter: var(--blur-amount, none) saturate(var(--blur-saturation, 1));
+  transition: box-shadow var(--transition-medium);
+}
+
+.toolbar:hover {
+  box-shadow: 
+    var(--shadow-float),
+    0 12px 40px rgba(0,0,0,0.15);
+}
+
+.toolbar-left, .toolbar-right { 
+  display: flex; 
+  align-items: center; 
+  gap: 6px; 
+}
+
+.app-title { 
+  font-weight: 700; 
+  color: var(--accent); 
+  margin-right: 8px;
+  font-variation-settings: 'wght' 700;
+}
+
+.opacity-label { 
+  display: flex; 
+  align-items: center; 
+  gap: 6px; 
+  font-size: 12px; 
+  color: var(--text-dim); 
+}
+
+#bg-opacity { 
+  width: 80px; 
+  accent-color: var(--accent); 
+}
+
+/* ── 主体布局 ── */
+.body-wrap {
+  position: relative;
+  z-index: var(--z-panel);
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  min-height: 0;
+  margin: 8px 12px;
+  gap: 1px;
+}
+
+/* ── 面板容器（Z轴层1） ── */
+.tree-panel {
+  position: relative;
+  width: 260px;
+  min-width: 20%;
+  max-width: 80%;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow-y: auto;
+  overflow-x: hidden;
+  flex-shrink: 0;
+  box-shadow: 
+    var(--shadow-panel),
+    inset 0 1px 0 rgba(255,255,255,0.02);
+  backdrop-filter: var(--blur-amount, none) saturate(var(--blur-saturation, 1));
+}
+
+.editor-panel {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-editor);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  min-width: 0;
+  box-shadow: 
+    var(--panel-shadow-inset),
+    var(--shadow-panel);
+  backdrop-filter: var(--blur-amount, none) saturate(var(--blur-saturation, 1));
+}
+
+/* ── 主分割线 ── */
+.divider {
+  width: var(--divider-w);
+  background: var(--border);
+  cursor: col-resize;
+  flex-shrink: 0;
+  transition: 
+    background var(--transition-fast),
+    transform var(--transition-fast);
+  position: relative;
+}
+
+.divider:hover {
+  background: var(--accent);
+}
+
+.divider.dragging {
+  background: var(--accent);
+  transform: scaleX(1.5);
+}
+
+/* 拖动时的视觉扭曲效果 */
+.divider.dragging::before {
+  content: '';
+  position: absolute;
+  left: -20px;
+  right: -20px;
+  top: 0;
+  bottom: 0;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(var(--accent), 0.1) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+/* ── 状态栏（Z轴层1） ── */
+.status-bar {
+  position: relative;
+  z-index: var(--z-panel);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  height: var(--status-h);
+  padding: 0 14px;
+  margin: 0 12px 8px 12px;
+  background: var(--bg-toolbar);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 12px;
+  color: var(--text-dim);
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+  backdrop-filter: var(--blur-amount, none) saturate(var(--blur-saturation, 1));
+}
+
+.storage-info.warn { 
+  color: var(--warning, #f0b429); 
+}
+
+.storage-info.critical { 
+  color: var(--danger); 
+}
+
+.status-msg { 
+  margin-left: auto; 
+  color: var(--success, #6ee7b7); 
+  position: relative;
+}
