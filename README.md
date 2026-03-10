@@ -24,7 +24,7 @@ git clone https://github.com/3253473591/MarkDown-Editor.git
 - Tab / Shift+Tab 缩进控制
 - 编辑区与预览区滚动同步
 - 编辑内容支持最多 100 步撤销 / 重做
-- 支持拖入代码文件自动创建节点（`.js`、`.py`、`.java` 等 20+ 种格式）
+- 支持拖入代码文件自动创建节点（js、py、java等 20+ 种格式）
 
 ### 导入 / 导出
 | 格式 | 导入 | 导出 |
