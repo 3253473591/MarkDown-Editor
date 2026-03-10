@@ -6,7 +6,7 @@
 git clone https://github.com/3253473591/MarkDown-Editor.git
 ```
 
-无需安装任何依赖，双击 `index.html` 即可使用。
+双击html即可使用。
 
 ## 功能特性
 
