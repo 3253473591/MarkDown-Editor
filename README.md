@@ -1,4 +1,4 @@
-一款基于节点树结构的本地 Markdown 编辑器，无需服务端，数据存储于浏览器本地（LocalStorage + IndexedDB）。
+一款基于节点树结构的纯前端 Markdown 编辑器。
 
 ## 使用方法
 
@@ -6,7 +6,7 @@
 git clone https://github.com/3253473591/MarkDown-Editor.git
 ```
 
-无需安装任何依赖，直接在浏览器中打开 `index.html` 即可使用。
+无需安装任何依赖，双击 `index.html` 即可使用。
 
 ## 功能特性
 
@@ -29,25 +29,11 @@ git clone https://github.com/3253473591/MarkDown-Editor.git
 ### 导入 / 导出
 | 格式 | 导入 | 导出 |
 |------|------|------|
-| JSON | ✅ | ✅（含隐藏状态） |
-| Markdown | ✅ | ✅（跳过隐藏节点） |
+| JSON | ✅ | ✅ |
+| Markdown | ✅ | ✅ |
 | YAML | — | ✅ |
 | XML | — | ✅ |
 | Word | — | ✅（复制富文本，直接粘贴到 Word） |
-
-### 存储管理
-- 小内容优先存入 LocalStorage，大内容（>5 MB）自动转存 IndexedDB
-- 单节点内容上限 100 KB
-- 实时显示存储占用，超过 4 MB 警告，超过 10 MB 强制提示清理
-- 存储清理工具：清除孤立节点数据、删除旧备份
-
-### 其他
-- 自定义背景图片，支持透明度调节
-- 全文模糊搜索（权重：内容 0.5 / 标签 0.3 / 注释 0.2）
-- 全篇预览（跳过隐藏节点）
-- 新手引导教程
-- 底部状态栏：字符数、Token 估算、节点数、存储占用
-- 仿Word DPI缩放（50%-200%）
 
 ## 键盘快捷键
 
@@ -67,31 +53,3 @@ git clone https://github.com/3253473591/MarkDown-Editor.git
 | `Insert` | 新建根节点 |
 | `Delete` | 删除当前节点（非编辑区） |
 | `Escape` | 关闭弹窗 |
-
-## 文件结构
-
-```
-├── index.html          # 主页面
-├── css/
-│   └── style.css       # 样式
-└── js/
-    ├── storage.js      # LocalStorage + IndexedDB 存储管理
-    ├── tree.js         # 树数据模型、渲染、拖拽、撤销/重做
-    ├── editor.js       # 编辑器、Markdown 渲染、工具栏、预览
-    ├── search.js       # 全文搜索
-    ├── export.js       # 多格式导入/导出
-    ├── shortcuts.js    # 全局键盘快捷键
-    ├── tutorial.js     # 新手引导教程
-    └── app.js          # 启动引导、分割线拖动、背景、设置
-```
-
-## 技术栈
-
-- 原生 JavaScript（无框架依赖）
-- IndexedDB + LocalStorage（本地持久化）
-- 自实现轻量 Markdown 渲染器
-- HTML5 Drag and Drop API
-
-## 数据说明
-
-所有数据均存储在浏览器本地，不会上传至任何服务器。清除浏览器缓存或站点数据会导致数据丢失，建议定期通过 JSON / MarkDown 格式导出备份。
